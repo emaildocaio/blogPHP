@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
+use Clockwork\Storage\Search;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -18,21 +20,8 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-Route::get('/', function () {
-    return view('posts', [
-        'posts'=> Post::latest()->get(),
-        'categories' => Category::all()
-    ]);
-})->name('home');
-
-Route::get('posts/{post:slug}', function(Post $post){
-   //Ache um post pelo id e pass para a view chamada post 
-   return view('post', [
-       'post' => $post
-       
-   ]);
-});
-
+Route::get('/', [PostController::class, 'index'])->name('home');
+Route::get('posts/{post:slug}', [PostController::class, 'show']); 
 
 // Route::get('posts/{post}', function(Post $post){
 //     //Ache um post pelo id e pass para a view chamada post 
