@@ -25,7 +25,12 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::get('register', [ RegisterController::class, 'create'])->middleware('guest');
 Route::post('register', [ RegisterController::class, 'store'])->middleware('guest');
 
-Route::post('logout', [SessionsControllers::class, 'destroy']);
+Route::get('login', [SessionsControllers::class, 'create'])->middleware('guest');
+Route::post('login', [SessionsControllers::class, 'store'])->middleware('guest');
+
+
+Route::post('logout', [SessionsControllers::class, 'destroy'])->middleware('auth');
+
 
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts.index', [
