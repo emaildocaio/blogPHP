@@ -20,17 +20,14 @@ class SessionsControllers extends Controller
             'password' => 'required'
         ]);
 
-            if(auth() -> attempt($attributes)){
-                //segurança
-                session()->regenerate();
-
-                return redirect('/')->with('success', 'Welcome Back!');
+            if(!auth() -> attempt($attributes)){
+                throw ValidationException::withMessages(
+                    ['password' => 'Your credentials could not be verified!'
+                ]);
             }
-            
-            throw ValidationException::withMessages(
-                ['password' => 'Your credentials could not be verified!']
-            );
-
+                //segurança
+            session()->regenerate();
+            return redirect('/')->with('success', 'Welcome Back!');
     }
 
 
