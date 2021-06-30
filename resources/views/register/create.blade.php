@@ -11,7 +11,7 @@
                     </label>
                     <input class="border border-gray-400 p-2 w-full"
                             type="text"
-                            name="name"
+                            name="name" 
                             id="name "
                             required 
                     >
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="mb-6">
-                    <label for="username" class="block mb-2 uppercase font-bold text-xs text-gray-700">
+                    <label for="email" class="block mb-2 uppercase font-bold text-xs text-gray-700">
                         email
                     </label>
                     <input class="border border-gray-400 p-2 w-full"
