@@ -6,12 +6,14 @@
                     <img src="/images/illustration-1.png" alt="" class="rounded-xl">
 
                     <p class="mt-4 block text-gray-400 text-xs">
+                        Published <time>This is Harde Coded</time>
                         Published <time>{{$post->created_at->diffForHumans()}}</time>
                     </p>
 
                     <div class="flex items-center lg:justify-center text-sm mt-4">
                         <img src="/images/lary-avatar.svg" alt="Lary avatar">
                         <div class="ml-3 text-left">
+                            <h5 class="font-bold">Caio Farias</h5>
                             <h5 class="font-bold">{{$post->author->name}}</h5>
                         </div>
                     </div>
@@ -48,10 +50,13 @@
                        
                 </div>
                 <section class="col-span-8 col-start-5 mt-10 space-y-6">
-                    <x-post-comment/>
-                    <x-post-comment/>
 
-                    <x-post-comment/>
+                    @foreach ($post->comment as $comment)
+                        <x-post-comment :comment="$comment" />
+                    @endforeach
+                        
+                    
+        
 
                 </section>
             </article>
